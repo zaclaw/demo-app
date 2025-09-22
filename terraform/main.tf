@@ -1,3 +1,13 @@
+data "tfe_outputs" "cluster_ca_certificate" {
+  organization = "zac-port-demo"
+  workspace    = "aws-eks"
+}
+
+data "tfe_outputs" "cluster_endpoint" {
+  organization = "zac-port-demo"
+  workspace    = "aws-eks"
+}
+
 provider "helm" {
   kubernetes = {
     config_path = "/home/tfc-agent/.kube/config"
