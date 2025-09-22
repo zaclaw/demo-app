@@ -23,9 +23,8 @@ provider "helm" {
   ]
 }
 
-resource "helm_release" "demo_app" {
-  name       = "demo-app"
-  repository = "oci://registry-1.docker.io/zac88/"
-  chart      = "demo-app"
-  version    = "0.1.0"
+resource "helm_release" "nginx" {
+  name       = "nginx"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "nginx"
 }
