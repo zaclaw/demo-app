@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "demo-app.fullname" . }}
+  labels:
+    app: {{ include "demo-app.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "demo-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "demo-app.name" . }}
+    spec:
+      containers:
+        - name: demo-app
+          image: "docker.io/zac88/demo-app:latest"
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
