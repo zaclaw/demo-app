@@ -10,7 +10,8 @@ data "tfe_outputs" "cluster_endpoint" {
 
 provider "helm" {
   kubernetes = {
-    config_path = "/home/tfc-agent/.kube/config"
+    host = data.tfe_outputs.cluster_endpoint.values.cluster_endpoint
+    cluster_ca_certificate = base64decode(data.tfe_outputs.cluster_ca_certificate.values.cluster_ca_certificate)
   }
 
   registries = [
