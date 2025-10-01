@@ -14,13 +14,13 @@ provider "helm" {
     cluster_ca_certificate = base64decode(data.tfe_outputs.cluster_ca_certificate.values.cluster_ca_certificate)
   }
 
-  registries = [
-    {
-      url      = var.registry_url
-      username = var.registry_username
-      password = var.registry_password
-    }
-  ]
+  #registries = [
+  #  {
+  #    url      = var.registry_url
+  #    username = var.registry_username
+  #    password = var.registry_password
+  #  }
+  #]
 }
 
 resource "helm_release" "nginx" {
