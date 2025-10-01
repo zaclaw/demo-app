@@ -12,6 +12,11 @@ provider "helm" {
   kubernetes = {
     host = data.tfe_outputs.cluster_endpoint.values.cluster_endpoint
     cluster_ca_certificate = base64decode(data.tfe_outputs.cluster_ca_certificate.values.cluster_ca_certificate)
+    exec = {
+      apiVersion = "client.authentication.k8s.io/v1beta1"
+      args = ["eks", "get-token", "--cluster-name", "education-eks-CBSoSr8o"]
+      command = "aws"
+    }
   }
 
   #registries = [
